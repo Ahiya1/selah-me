@@ -8,7 +8,7 @@ export function SessionComplete({ reflection, exitSentence }: SessionCompletePro
     <div className="space-y-6">
       <p className="text-base">{reflection}</p>
       <p className="text-base font-medium">{exitSentence}</p>
-      <p className="text-sm text-gray-500 mt-8">You can close this tab now.</p>
+      <p className="text-sm text-gray-500 mt-8">Close this tab.</p>
     </div>
   );
 }
