@@ -51,7 +51,7 @@ export async function POST(request: NextRequest): Promise<Response> {
   try {
     const anthropic = new Anthropic({ apiKey });
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-3-haiku-20240307',
       max_tokens: 150,
       system: SELAH_SYSTEM_PROMPT,
       messages: [
