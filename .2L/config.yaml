@@ -1,0 +1,10 @@
+current_plan: plan-1
+global_iteration_counter: 0
+
+plans:
+  - plan_id: plan-1
+    name: "Selah-me - Presence Pause Tool"
+    status: VISIONED
+    mode: production
+    created_at: "2026-01-14T11:11:00+02:00"
+    vision_file: .2L/plan-1/vision.md
