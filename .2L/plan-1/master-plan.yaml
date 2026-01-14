@@ -1,0 +1,123 @@
+plan_id: plan-1
+created_at: "2026-01-14T11:15:00+02:00"
+status: PLANNED
+mode: production
+total_iterations: 2
+
+strategy: |
+  Build Selah-me as a minimal single-page presence tool using Next.js 15, TypeScript,
+  and Tailwind CSS. Primary AI integration via Anthropic Claude API. Server-side API
+  route for secure key handling. Two iterations: Core Loop establishes complete working
+  product, Polish adds production hardening and deployment.
+
+  Key architectural decisions:
+  - App Router with single page (app/page.tsx)
+  - API Route at /api/selah for AI proxy
+  - Vitest for testing (faster than Jest)
+  - System font stack (no custom fonts)
+  - Minimal Tailwind config
+
+complexity:
+  level: SIMPLE
+  features: 4
+  integrations: 1
+  rationale: "Single page, no database, no auth, one AI integration"
+
+technology:
+  framework: Next.js 15 with App Router
+  language: TypeScript (strict mode)
+  styling: Tailwind CSS (minimal)
+  ai_provider: Anthropic Claude (claude-3-5-sonnet-20241022)
+  testing: Vitest + @testing-library/react
+  deployment: Vercel
+  ci_cd: GitHub Actions
+
+iterations:
+  - iteration_id: 1
+    global_iteration: 1
+    name: "Core Loop"
+    vision: "Build the complete working flow from question to exit with basic tests"
+    scope: |
+      - Next.js 15 project scaffold with TypeScript and Tailwind
+      - API route for AI integration (/api/selah)
+      - Anthropic Claude client integration
+      - System prompt implementation (exact text from vision)
+      - Opening questions list with random selection
+      - Exit sentences list with random selection
+      - Single page UI with:
+        - Opening question display
+        - Text input field
+        - Submit button
+        - Reflection display
+        - Exit sentence display
+        - "Session complete" state
+      - Basic visual styling (white/off-white, black text, system font)
+      - Environment variable setup (.env.local, .env.example)
+      - Input validation
+      - Basic error handling
+      - Unit tests for lib functions
+      - Integration tests for API route with mocked AI
+    status: PENDING
+    dependencies: []
+    estimated_hours: 4-6
+    risk_level: LOW
+    success_criteria:
+      - User can open page, see question, type response, see reflection, see exit
+      - AI responses follow system prompt constraints
+      - No persistence between page refreshes
+      - TypeScript compiles without errors
+      - All basic tests pass
+      - Test coverage >= 70%
+
+  - iteration_id: 2
+    global_iteration: 2
+    name: "Polish + Production"
+    vision: "Refine the experience and deploy to production"
+    scope: |
+      - Visual refinement (exact spacing, typography)
+      - Mobile responsiveness
+      - Close-tab nudge behavior after exit
+      - Question/exit rotation improvement
+      - Comprehensive E2E tests with Playwright
+      - Edge case and error state testing
+      - CI/CD pipeline (GitHub Actions workflow)
+      - Production deployment to Vercel
+      - Security review checklist completion
+      - Vercel environment variable configuration
+      - Final documentation (README setup instructions only)
+    status: PENDING
+    dependencies:
+      - iteration_id: 1
+    estimated_hours: 3-4
+    risk_level: LOW
+    success_criteria:
+      - Visual design matches vision (minimal, clean, almost boring)
+      - All tests pass in CI
+      - Production deployment works
+      - Security checklist complete
+      - CI/CD pipeline runs successfully
+      - Deployed URL accessible
+
+production_requirements:
+  testing:
+    - Unit tests for lib functions (questions, exits, validation, prompts)
+    - Integration tests for API route with mocked Anthropic client
+    - E2E tests with Playwright for full session flow
+    - Coverage target: >= 70%
+  ci_cd:
+    - GitHub Actions workflow on push/PR to main
+    - Steps: typecheck, lint, test, build
+    - Vercel automatic deployment on main
+  security:
+    - API keys server-side only (no NEXT_PUBLIC_ prefix)
+    - .env.local in .gitignore
+    - .env.example committed
+    - Input validation for user messages
+    - Rate limiting (simple in-memory)
+    - No sensitive data in error responses
+
+notes:
+  - Vision document is exceptionally clear - follow it precisely
+  - "Almost boring" tone is critical - test AI responses manually
+  - Success = decreasing usage over time (anti-engagement)
+  - The self-destruction rule is philosophical guidance, not technical requirement
